@@ -1,0 +1,1 @@
+This is a project to help train me in javascript. It is not made to be a full application.
