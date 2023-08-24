@@ -2,27 +2,56 @@
 
 /*
 functions needed:
-Player Choice
-Computer Choice
+Player Choice [done]
+Computer Choice [done]
 Win Decider
 Win Counter
 */
 
 /*
-Player choice:
+Player choice: [DONE]
 Message: Enter Rock, Paper, or Scissors
 Store user input in string variable playerChoice
 convert all chars in playerChoice to uppercase
+While (playerChoice != ROCK || PAPER || SCISSORS) {
+    playerChoice = prompt("please enter a valid move")
+    playerChoice = playerChoice.toUpperCase;
+}
 Return playerChoice
 */
 
+function getPlayerChoice(){
+    let playerChoice = prompt("Enter Rock, Paper, or Scissors");
+    playerChoice = playerChoice.toUpperCase;
+    while (playerChoice != "ROCK" || playerChoice != "PAPER" || playerChoice != "SCISSORS"){
+        playerChoice = prompt("Please enter a valid move");
+        playerChoice = playerChoice.toUpperCase;
+    }
+    return playerChoice;
+}
+
 /*
-Computer choice
+Computer choice [DONE]
 let variable randomNum get a random number between one and three
 if the number is 1, return "ROCK"
 if the number is 2, return "PAPER"
 if the number is 3, return "SCISSORS"
 */
+function getComputerChoice() {
+    let randomNum = getRandomIntInclusive(1, 3);
+    switch(randomNum){
+        case 1:
+            return "ROCK";
+            break;
+        case 2:
+            return "PAPER";
+            break;
+        case 3:
+            return "SCISSORS"
+    }
+}
+
+
 
 /*
 create integer playerScore == 0
@@ -48,6 +77,7 @@ if playerScore == 5, output "Congratulations, you won the game!"
 
 */
 
+
 /*
 WinDecider (playerChoice, computerChoice)
 if playerChoice equals computerChoice, return 0
@@ -70,3 +100,39 @@ if playerChoice is SCISSORS
         return 2
 */
 
+function WinDecider (playerChoice, computerChoice) {
+    if (playerChoice == computerChoice) {
+        return 0; //tie
+    }
+
+        //if the player returns ROCK
+    if (playerChoice == "ROCK"){
+        if (computerChoice == "SCISSORS"){
+            return 1; //win
+        } else {
+            return 2; //lose
+        }
+    }
+
+    if (playerChoice == "PAPER"){
+        if (computerChoice == "ROCK"){
+            return 1; //win
+        } else {
+            return 2; //lose
+        }
+    }
+
+    if (playerChoice == "SCISSORS"){
+        if (computerChoice == "PAPER"){
+            return 1; //win
+        }else {
+            return 2; //lose
+        }
+    }
+}
+
+function getRandomIntInclusive(min, max) {
+    min = Math.ceil(min);
+    max - Math.floor(max);
+    return Math.floor(Math.random() * (max - min + 1)) + min; 
+}
