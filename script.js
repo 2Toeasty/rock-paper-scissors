@@ -4,7 +4,7 @@
 functions needed:
 Player Choice [done]
 Computer Choice [done]
-Win Decider
+Win Decider [done]
 Win Counter
 */
 
@@ -20,10 +20,10 @@ While (playerChoice != ROCK || PAPER || SCISSORS) {
 Return playerChoice
 */
 
-function getPlayerChoice(){
+function getPlayerChoice() {
     let playerChoice = prompt("Enter Rock, Paper, or Scissors");
-    playerChoice = playerChoice.toUpperCase;
-    while (playerChoice != "ROCK" || playerChoice != "PAPER" || playerChoice != "SCISSORS"){
+    playerChoice = playerChoice.toUpperCase();
+    while (playerChoice != "ROCK" && playerChoice != "PAPER" && playerChoice != "SCISSORS") {
         playerChoice = prompt("Please enter a valid move");
         playerChoice = playerChoice.toUpperCase;
     }
@@ -39,7 +39,7 @@ if the number is 3, return "SCISSORS"
 */
 function getComputerChoice() {
     let randomNum = getRandomIntInclusive(1, 3);
-    switch(randomNum){
+    switch (randomNum) {
         case 1:
             return "ROCK";
             break;
@@ -77,9 +77,47 @@ if playerScore == 5, output "Congratulations, you won the game!"
 
 */
 
+let playerScore = 0;
+let computerScore = 0;
+
+while (playerScore != 5 && computerScore != 5) {
+    let playerChoice = getPlayerChoice();
+    let computerChoice = getComputerChoice();
+
+    let output = "The computer chose " + computerChoice + ", ";
+    let winner = WinDecider(playerChoice, computerChoice);
+
+
+
+
+
+
+    switch (winner) {
+        case 0:
+            output += `it's a tie, the score is still: \n Computer: ${computerScore} \n You: ${playerScore}`
+            alert(output);
+            break;
+        case 1:
+            playerScore++;
+            output += `you win! The score is now: \n Computer: ${computerScore} \n You: ${playerScore}`
+            alert(output);
+            break;
+        case 2:
+            computerScore++;
+            output += `you lose. The score is now: \n Computer: ${computerScore} \n You: ${playerScore}`
+            alert(output);
+    }
+}
+
+if (playerScore == 5) {
+    alert("congratulations, you won!");
+} else {
+    alert("Game over, you lost :(");
+}
+
 
 /*
-WinDecider (playerChoice, computerChoice)
+WinDecider (playerChoice, computerChoice) [DONE]
 if playerChoice equals computerChoice, return 0
 if playerChoice is ROCK,
     then if computerChoice is SCISSORS
@@ -100,32 +138,32 @@ if playerChoice is SCISSORS
         return 2
 */
 
-function WinDecider (playerChoice, computerChoice) {
+function WinDecider(playerChoice, computerChoice) {
     if (playerChoice == computerChoice) {
         return 0; //tie
     }
 
-        //if the player returns ROCK
-    if (playerChoice == "ROCK"){
-        if (computerChoice == "SCISSORS"){
+    //if the player returns ROCK
+    if (playerChoice == "ROCK") {
+        if (computerChoice == "SCISSORS") {
             return 1; //win
         } else {
             return 2; //lose
         }
     }
 
-    if (playerChoice == "PAPER"){
-        if (computerChoice == "ROCK"){
+    if (playerChoice == "PAPER") {
+        if (computerChoice == "ROCK") {
             return 1; //win
         } else {
             return 2; //lose
         }
     }
 
-    if (playerChoice == "SCISSORS"){
-        if (computerChoice == "PAPER"){
+    if (playerChoice == "SCISSORS") {
+        if (computerChoice == "PAPER") {
             return 1; //win
-        }else {
+        } else {
             return 2; //lose
         }
     }
@@ -134,5 +172,5 @@ function WinDecider (playerChoice, computerChoice) {
 function getRandomIntInclusive(min, max) {
     min = Math.ceil(min);
     max - Math.floor(max);
-    return Math.floor(Math.random() * (max - min + 1)) + min; 
+    return Math.floor(Math.random() * (max - min + 1)) + min;
 }
