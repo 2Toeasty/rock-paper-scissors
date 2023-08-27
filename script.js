@@ -31,7 +31,7 @@ function getPlayerChoice() {
 }
 
 /*
-Computer choice [DONE]
+Computer choice
 let variable randomNum get a random number between one and three
 if the number is 1, return "ROCK"
 if the number is 2, return "PAPER"
@@ -86,10 +86,6 @@ while (playerScore != 5 && computerScore != 5) {
 
     let output = "The computer chose " + computerChoice + ", ";
     let winner = WinDecider(playerChoice, computerChoice);
-
-
-
-
 
 
     switch (winner) {
