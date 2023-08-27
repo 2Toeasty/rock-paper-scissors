@@ -25,7 +25,7 @@ function getPlayerChoice() {
     playerChoice = playerChoice.toUpperCase();
     while (playerChoice != "ROCK" && playerChoice != "PAPER" && playerChoice != "SCISSORS") {
         playerChoice = prompt("Please enter a valid move");
-        playerChoice = playerChoice.toUpperCase;
+        playerChoice = playerChoice.toUpperCase();
     }
     return playerChoice;
 }
@@ -113,7 +113,7 @@ if (playerScore == 5) {
 
 
 /*
-WinDecider (playerChoice, computerChoice) [DONE]
+WinDecider (playerChoice, computerChoice)
 if playerChoice equals computerChoice, return 0
 if playerChoice is ROCK,
     then if computerChoice is SCISSORS
