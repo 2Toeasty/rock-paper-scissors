@@ -80,37 +80,46 @@ if playerScore == 5, output "Congratulations, you won the game!"
 let playerScore = 0;
 let computerScore = 0;
 
-while (playerScore != 5 && computerScore != 5) {
-    let playerChoice = getPlayerChoice();
-    let computerChoice = getComputerChoice();
+function playRound(playerScore, computerScore) {
+    while (playerScore != 5 && computerScore != 5) {
 
-    let output = "The computer chose " + computerChoice + ", ";
-    let winner = WinDecider(playerChoice, computerChoice);
+        let playerChoice = getPlayerChoice();
+        let computerChoice = getComputerChoice();
+
+        let output = "The computer chose " + computerChoice + ", ";
+        let winner = WinDecider(playerChoice, computerChoice);
 
 
-    switch (winner) {
-        case 0:
-            output += `it's a tie, the score is still: \n Computer: ${computerScore} \n You: ${playerScore}`
-            alert(output);
-            break;
-        case 1:
-            playerScore++;
-            output += `you win! The score is now: \n Computer: ${computerScore} \n You: ${playerScore}`
-            alert(output);
-            break;
-        case 2:
-            computerScore++;
-            output += `you lose. The score is now: \n Computer: ${computerScore} \n You: ${playerScore}`
-            alert(output);
+        switch (winner) {
+            case 0:
+                output += `it's a tie, the score is still: \n Computer: ${computerScore} \n You: ${playerScore}`
+                alert(output);
+                break;
+            case 1:
+                playerScore++;
+                output += `you win! The score is now: \n Computer: ${computerScore} \n You: ${playerScore}`
+                alert(output);
+                break;
+            case 2:
+                computerScore++;
+                output += `you lose. The score is now: \n Computer: ${computerScore} \n You: ${playerScore}`
+                alert(output);
+        }
     }
 }
 
+function checkWin (playerScore, computerScore){
 if (playerScore == 5) {
     alert("congratulations, you won!");
-} else {
+} else if (computerScore == 5){
     alert("Game over, you lost :(");
 }
+}
 
+
+buttonPress.addEventListener("click", function () {
+    playRound();
+})
 
 /*
 WinDecider (playerChoice, computerChoice)
