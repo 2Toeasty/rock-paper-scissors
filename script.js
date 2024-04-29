@@ -81,7 +81,7 @@ if playerScore == 5, output "Congratulations, you won the game!"
 
 let playerScore = 0;
 let computerScore = 0;
-const result = document.querySelector("result");
+const result = document.querySelector("p");
 
 function playRound(playerScore, computerScore) {
     if (result) {
