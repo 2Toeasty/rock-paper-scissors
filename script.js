@@ -20,6 +20,8 @@ While (playerChoice != ROCK || PAPER || SCISSORS) {
 Return playerChoice
 */
 
+
+
 function getPlayerChoice() {
     let playerChoice = prompt("Enter Rock, Paper, or Scissors");
     playerChoice = playerChoice.toUpperCase();
@@ -47,7 +49,7 @@ function getComputerChoice() {
             return "PAPER";
             break;
         case 3:
-            return "SCISSORS"
+            return "SCISSORS";
     }
 }
 
@@ -79,103 +81,105 @@ if playerScore == 5, output "Congratulations, you won the game!"
 
 let playerScore = 0;
 let computerScore = 0;
+const result = document.querySelector("result");
 
 function playRound(playerScore, computerScore) {
-    while (playerScore != 5 && computerScore != 5) {
-
-        let playerChoice = getPlayerChoice();
-        let computerChoice = getComputerChoice();
-
-        let output = "The computer chose " + computerChoice + ", ";
-        let winner = WinDecider(playerChoice, computerChoice);
-
-
-        switch (winner) {
-            case 0:
-                output += `it's a tie, the score is still: \n Computer: ${computerScore} \n You: ${playerScore}`
-                alert(output);
-                break;
-            case 1:
-                playerScore++;
-                output += `you win! The score is now: \n Computer: ${computerScore} \n You: ${playerScore}`
-                alert(output);
-                break;
-            case 2:
-                computerScore++;
-                output += `you lose. The score is now: \n Computer: ${computerScore} \n You: ${playerScore}`
-                alert(output);
-        }
+    if (result) {
+        result.textContent = ""; //resets the result div
     }
-}
+        while (playerScore != 5 && computerScore != 5) {
 
-function checkWin (playerScore, computerScore){
-if (playerScore == 5) {
-    alert("congratulations, you won!");
-} else if (computerScore == 5){
-    alert("Game over, you lost :(");
-}
-}
+            let playerChoice = getPlayerChoice();
+            let computerChoice = getComputerChoice();
 
+            let output = "You chose " + playerChoice + "\n The computer chose " + computerChoice + ", ";
+            let winner = WinDecider(playerChoice, computerChoice);
 
-buttonPress.addEventListener("click", function () {
-    playRound();
-})
-
-/*
-WinDecider (playerChoice, computerChoice)
-if playerChoice equals computerChoice, return 0
-if playerChoice is ROCK,
-    then if computerChoice is SCISSORS
-        return 1
-    else
-        return 2
-
-if playerChoice is PAPER
-    then if computerChoice is ROCK,
-        return 1
-    else
-        return 2
-
-if playerChoice is SCISSORS
-    then if computerChoice is PAPER
-        return 1
-    else
-        return 2
-*/
-
-function WinDecider(playerChoice, computerChoice) {
-    if (playerChoice == computerChoice) {
-        return 0; //tie
-    }
-
-    //if the player returns ROCK
-    if (playerChoice == "ROCK") {
-        if (computerChoice == "SCISSORS") {
-            return 1; //win
-        } else {
-            return 2; //lose
+            switch (winner) {
+                case 0:
+                    output += `it's a tie, the score is still: \n Computer: ${computerScore} \n You: ${playerScore}`;
+                    result.textContent = output;
+                    break;
+                case 1:
+                    playerScore++;
+                    output += `you win! The score is now: \n Computer: ${computerScore} \n You: ${playerScore}`;
+                    result.textContent = output;
+                    break;
+                case 2:
+                    computerScore++;
+                    output += `you lose. The score is now: \n Computer: ${computerScore} \n You: ${playerScore}`;
+                    result.textContent = output; //TODO: Merge the three identical lines of code into one
+            }
         }
     }
 
-    if (playerChoice == "PAPER") {
-        if (computerChoice == "ROCK") {
-            return 1; //win
-        } else {
-            return 2; //lose
+
+    function checkWin(playerScore, computerScore) {
+        if (playerScore == 5) {
+            result.textContent = "congratulations, you won!";
+        } else if (computerScore == 5) {
+            result.textContent = "game over, you lost :(";
         }
     }
 
-    if (playerChoice == "SCISSORS") {
-        if (computerChoice == "PAPER") {
-            return 1; //win
-        } else {
-            return 2; //lose
+    const buttonPress = document.querySelector("#anyButton");
+    buttonPress.addEventListener("click", () => playRound(playerScore, computerScore));
+
+    /*
+    WinDecider (playerChoice, computerChoice)
+    if playerChoice equals computerChoice, return 0
+    if playerChoice is ROCK,
+        then if computerChoice is SCISSORS
+            return 1
+        else
+            return 2
+    
+    if playerChoice is PAPER
+        then if computerChoice is ROCK,
+            return 1
+        else
+            return 2
+    
+    if playerChoice is SCISSORS
+        then if computerChoice is PAPER
+            return 1
+        else
+            return 2
+    */
+
+    function WinDecider(playerChoice, computerChoice) {
+        if (playerChoice == computerChoice) {
+            return 0; //tie
+        }
+
+        //if the player returns ROCK
+        if (playerChoice == "ROCK") {
+            if (computerChoice == "SCISSORS") {
+                return 1; //win
+            } else {
+                return 2; //lose
+            }
+        }
+
+        if (playerChoice == "PAPER") {
+            if (computerChoice == "ROCK") {
+                return 1; //win
+            } else {
+                return 2; //lose
+            }
+        }
+
+        if (playerChoice == "SCISSORS") {
+            if (computerChoice == "PAPER") {
+                return 1; //win
+            } else {
+                return 2; //lose
+            }
         }
     }
-}
 
-function getRandomIntInclusive(min, max) {
-    min = Math.ceil(min);
-    max - Math.floor(max);
-    return Math.floor(Math.random() * (max - min + 1)) + min;
-}
+    function getRandomIntInclusive(min, max) {
+        min = Math.ceil(min);
+        max - Math.floor(max);
+        return Math.floor(Math.random() * (max - min + 1)) + min;
+    }
