@@ -17,7 +17,6 @@ function getPlayerChoice(choseRock, chosePaper, choseScissors) { //TODO: Change 
         playerChoice = prompt("Please enter a valid move");
         playerChoice = playerChoice.toUpperCase();
     }*/
-    return playerChoice;
 }
 
 function getComputerChoice() {
@@ -38,11 +37,17 @@ let playerScore = 0;
 let computerScore = 0;
 const result = document.querySelector("p");
 
-function playRound(playerScore, computerScore, rockPress, paperPress, scissorsPress) {
+
+
+let rockPress = false;
+let paperPress = false;
+let scissorsPress = false;
+
+function playRound() {
     if (result) {
         result.textContent = ""; //resets the result div
     }
-    while (playerScore != 5 && computerScore != 5) {
+
 
 
         let playerChoice = getPlayerChoice(rockPress, paperPress, scissorsPress);
@@ -66,8 +71,11 @@ function playRound(playerScore, computerScore, rockPress, paperPress, scissorsPr
                 output += `you lose. The score is now: \n Computer: ${computerScore} \n You: ${playerScore}`;
                 result.textContent = output; //TODO: Merge the three identical lines of code into one
         }
+        rockPress = false;
+        paperPress = false;
+        scissorsPress = false;
     }
-}
+
 
 
 function checkWin(playerScore, computerScore) {
@@ -77,22 +85,25 @@ function checkWin(playerScore, computerScore) {
         result.textContent = "game over, you lost :(";
     }
 }
+const rockButton = document.querySelector("#rockButton");
+const paperButton = document.querySelector("#paperButton");
+const scissorsButton = document.querySelector("#scissorsButton");
 
-let rockPress = false;
-let paperPress = false;
-let scissorsPress = false;
+if (playerScore != 5 && computerScore != 5){
 
-let rockButton = document.querySelector("#rockButton");
-let paperButton = document.querySelector("#paperButton");
-let scissorsButton = document.querySelector("#scissorsButton");
-
-rockButton.addEventListener("click", () => { rockPress = true; playRound(playerScore, computerScore, rockPress, paperPress, scissorsPress) })
-paperButton.addEventListener("click", () => { paperPress = true; playRound(playerScore, computerScore, rockPress, paperPress, scissorsPress) })
-scissorsButton.addEventListener("click", () => { scissorsPress = true; playRound(playerScore, computerScore, rockPress, paperPress, scissorsPress) })
-
-
-
-//buttonPress.addEventListener("click", () => playRound(playerScore, computerScore));
+rockButton.addEventListener("click", () => {
+    rockPress = true;
+    playRound()
+})
+paperButton.addEventListener("click", () => {
+    paperPress = true;
+    playRound
+})
+scissorsButton.addEventListener("click", () => {
+    scissorsPress = true;
+    playRound
+})
+}
 
 function WinDecider(playerChoice, computerChoice) {
     if (playerChoice == computerChoice) {
