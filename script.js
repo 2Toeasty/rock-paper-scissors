@@ -48,33 +48,31 @@ function playRound() {
         result.textContent = ""; //resets the result div
     }
 
+    let playerChoice = getPlayerChoice(rockPress, paperPress, scissorsPress);
+    let computerChoice = getComputerChoice();
 
+    let output = "You chose " + playerChoice + "\n The computer chose " + computerChoice + ", ";
+    let winner = WinDecider(playerChoice, computerChoice);
 
-        let playerChoice = getPlayerChoice(rockPress, paperPress, scissorsPress);
-        let computerChoice = getComputerChoice();
-
-        let output = "You chose " + playerChoice + "\n The computer chose " + computerChoice + ", ";
-        let winner = WinDecider(playerChoice, computerChoice);
-
-        switch (winner) {
-            case 0:
-                output += `it's a tie, the score is still: \n Computer: ${computerScore} \n You: ${playerScore}`;
-                result.textContent = output;
-                break;
-            case 1:
-                playerScore++;
-                output += `you win! The score is now: \n Computer: ${computerScore} \n You: ${playerScore}`;
-                result.textContent = output;
-                break;
-            case 2:
-                computerScore++;
-                output += `you lose. The score is now: \n Computer: ${computerScore} \n You: ${playerScore}`;
-                result.textContent = output; //TODO: Merge the three identical lines of code into one
-        }
-        rockPress = false;
-        paperPress = false;
-        scissorsPress = false;
+    switch (winner) {
+        case 0:
+            output += `it's a tie, the score is still: \n Computer: ${computerScore} \n You: ${playerScore}`;
+            result.textContent = output;
+            break;
+        case 1:
+            playerScore++;
+            output += `you win! The score is now: \n Computer: ${computerScore} \n You: ${playerScore}`;
+            result.textContent = output;
+            break;
+        case 2:
+            computerScore++;
+            output += `you lose. The score is now: \n Computer: ${computerScore} \n You: ${playerScore}`;
+            result.textContent = output; //TODO: Merge the three identical lines of code into one
     }
+    rockPress = false;
+    paperPress = false;
+    scissorsPress = false;
+}
 
 
 
@@ -89,20 +87,20 @@ const rockButton = document.querySelector("#rockButton");
 const paperButton = document.querySelector("#paperButton");
 const scissorsButton = document.querySelector("#scissorsButton");
 
-if (playerScore != 5 && computerScore != 5){
+if (playerScore != 5 && computerScore != 5) {
 
-rockButton.addEventListener("click", () => {
-    rockPress = true;
-    playRound()
-})
-paperButton.addEventListener("click", () => {
-    paperPress = true;
-    playRound
-})
-scissorsButton.addEventListener("click", () => {
-    scissorsPress = true;
-    playRound
-})
+    rockButton.addEventListener("click", () => {
+        rockPress = true;
+        playRound();
+    })
+    paperButton.addEventListener("click", () => {
+        paperPress = true;
+        playRound();
+    })
+    scissorsButton.addEventListener("click", () => {
+        scissorsPress = true;
+        playRound();
+    })
 }
 
 function WinDecider(playerChoice, computerChoice) {
