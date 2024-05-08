@@ -78,9 +78,19 @@ function playRound() {
 
 function checkWin(playerScore, computerScore) {
     if (playerScore == 5) {
-        result.textContent = "congratulations, you won!";
+        result.textContent = `congratulations, you won! \n The final score was \n You: ${playerScore} \n Computer: ${computerScore}`;
+        rockPress = false;
+        paperPress = false;
+        scissorsPress = false;
+        playerScore = 0;
+        computerScore = 0;
     } else if (computerScore == 5) {
-        result.textContent = "game over, you lost :(";
+        result.textContent = `game over, you lost :( \n The final score was \n Computer: ${computerScore} \n You: ${playerScore}`;
+        rockPress = false;
+        paperPress = false;
+        scissorsPress = false;
+        playerScore = 0;
+        computerScore = 0;
     }
 }
 const rockButton = document.querySelector("#rockButton");
