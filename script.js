@@ -7,16 +7,8 @@ function getPlayerChoice(choseRock, chosePaper, choseScissors) { //TODO: Change 
         return "PAPER";
     } else if (choseScissors == true) {
         return "SCISSORS";
-    } else {
-        alert("No Individual Button Press Detected");
     }
 
-    /*let playerChoice = prompt("Enter Rock, Paper, or Scissors");
-    playerChoice = playerChoice.toUpperCase();
-    while (playerChoice != "ROCK" && playerChoice != "PAPER" && playerChoice != "SCISSORS") {
-        playerChoice = prompt("Please enter a valid move");
-        playerChoice = playerChoice.toUpperCase();
-    }*/
 }
 
 function getComputerChoice() {
@@ -67,7 +59,7 @@ function playRound() {
         case 2:
             computerScore++;
             output += `you lose. The score is now: \n Computer: ${computerScore} \n You: ${playerScore}`;
-            result.textContent = output; //TODO: Merge the three identical lines of code into one
+            result.textContent = output;
     }
     rockPress = false;
     paperPress = false;
@@ -122,7 +114,6 @@ function WinDecider(playerChoice, computerChoice) {
         return 0; //tie
     }
 
-    //if the player returns ROCK
     if (playerChoice == "ROCK") {
         if (computerChoice == "SCISSORS") {
             return 1; //win
