@@ -72,11 +72,15 @@ function playRound() {
     rockPress = false;
     paperPress = false;
     scissorsPress = false;
+
+    console.log("playerScore " + playerScore);
+    console.log("computerScore " + computerScore);
+    checkWin(playerScore, computerScore);
 }
 
 
 
-function checkWin(playerScore, computerScore) {
+function checkWin() {
     if (playerScore == 5) {
         result.textContent = `congratulations, you won! \n The final score was \n You: ${playerScore} \n Computer: ${computerScore}`;
         rockPress = false;
@@ -97,7 +101,7 @@ const rockButton = document.querySelector("#rockButton");
 const paperButton = document.querySelector("#paperButton");
 const scissorsButton = document.querySelector("#scissorsButton");
 
-if (playerScore != 5 && computerScore != 5) {
+if (playerScore < 5 && computerScore < 5) {
 
     rockButton.addEventListener("click", () => {
         rockPress = true;
